@@ -1,0 +1,75 @@
+<div class="container">
+  <br>
+  <ng-progress class="root-progress-bar" [thick]="true" [meteor]="false" [spinner]="false"></ng-progress>
+  <br>
+  <mat-card [style.backgroundColor]="'darkgray'">
+    <h2>Image Uploader</h2>
+    <form [formGroup]="uploadForm" (ngSubmit)="uploadSubmit()">
+      <mat-card-content>
+        <br>
+        <input formControlName="document" type="file" ng2FileSelect accept=".jpg,.jpeg,.png" [uploader]="uploader" multiple/>
+        <br/>
+        <br>
+        <div id="dragdrop">
+          <div ng2FileDrop [uploader]="uploader" class="drop-zone" name="file">
+            Drag and drop image to upload
+          </div>
+        </div>
+        <br>
+        <table>
+          <thead>
+            <tr>
+              <th width="30%">
+                S.NO.
+              </th>
+              <th width="90%">
+                Image Name
+              </th>
+              <th width="70%">
+                Remove
+              </th>
+            </tr>
+          </thead>
+
+          <tr *ngFor="let item of uploader.queue">
+            <th width="30%">
+              {{uploader.queue.indexOf(item) + 1}}
+            </th>
+            <th width="30%">
+              ({{uploader.queue.indexOf(item)}} {{item.file.name}} {{item.file.size}} kB)
+            </th>
+            <th class="text-center" width="30%">
+              <mat-icon (click)="ppath.splice(uploader.queue.indexOf(item), 1); item.remove();">delete</mat-icon>
+            </th>
+          </tr>
+
+          <tr>
+            <div>
+              Upload progress ({{uploadPercentage+'%'}}):
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploadPercentage+ '%' }" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+          </tr>
+
+          </tbody>
+        </table>
+        <br>
+        <div style="text-align:center">
+          <button mat-raised-button color="accent" type="submit">Upload </button>
+        </div>
+      </mat-card-content>
+    </form>
+    <div class="container">
+      <div *ngIf="ppath">
+        <div *ngFor="let path of ppath" style="display: inline">
+          <img [src]="path" *ngIf="path" width="300" height="200"> &nbsp;
+        </div>
+        <br>
+      </div>
+    </div>
+
+    <div class="alert alert-success" id="demo"></div>
+
+
+  </mat-card>
