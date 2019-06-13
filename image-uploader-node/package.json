@@ -1,0 +1,22 @@
+{
+  "name": "image-uploader-node",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "async": "^2.6.2",
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "express-fileupload": "^1.1.3-alpha.2",
+    "formidable": "^1.2.1",
+    "http-errors": "~1.6.2",
+    "jade": "~1.11.0",
+    "mongoose": "^5.4.20",
+    "morgan": "~1.9.0",
+    "sharp": "^0.22.0"
+  }
+}
